@@ -8,7 +8,7 @@ router.prefix('/api/user')
 
 router
   .get('/getAll', verify, UserController.getAllUser)
-  .post('/saveUser', verify, UserController.saveUser)
+  .post('/saveUser', UserController.saveUser)
   .get('/getUserById', verify, UserController.getUserById)
 
 export default router

@@ -8,7 +8,9 @@ router.prefix('/api/view')
 
 router
   .get('/getAll', verify, ViewController.getAllView)
+  .get('/getView/:id', verify, ViewController.getViewById)
+  .post('/getViewTemp', ViewController.getViewByApi)
   .post('/saveView', verify, ViewController.saveView)
-  .get('/getViewById', ViewController.getViewById)
+  .post('/updateView', verify, ViewController.updateView)
 
 export default router

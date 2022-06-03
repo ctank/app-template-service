@@ -18,7 +18,12 @@ const ViewSchema = new Schema(
         index: true,
         unique: true
       },
-      config: String
+      components: {
+        type: Array
+      },
+      layouts: {
+        type: Array
+      }
     },
     defaultSchemaExtend
   ),
