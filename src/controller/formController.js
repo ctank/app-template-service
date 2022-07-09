@@ -19,14 +19,14 @@ class FormController {
   }
 
   static async getFormById(ctx) {
-    let id = ctx.query.id
-    let form = await Form.findOne({ id: id })
+    const { id } = ctx.params
+    const form = await Form.findById(id)
     if (form) {
       ctx.body = {
         name: form.name || form.api,
         api: form.api,
         components: form.components,
-        layouts: form.layouts,
+        layouts: form.layouts
       }
     } else {
       throw new ApiError(ApiErrorNames.FormNotExist)
@@ -68,7 +68,7 @@ class FormController {
 
   static async updateForm(ctx) {
     let request = ctx.request.body
-    let form = await Form.findOne({ api: request.api })
+    let form = await Form.findById(request.id)
     if (form) {
       form.name = request.name || request.api
       form.api = request.api

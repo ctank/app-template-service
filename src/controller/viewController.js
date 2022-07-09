@@ -19,14 +19,14 @@ class ViewController {
   }
 
   static async getViewById(ctx) {
-    let id = ctx.query.id
-    let view = await View.findOne({ id: id })
+    const { id } = ctx.params
+    const view = await View.findById(id)
     if (view) {
       ctx.body = {
         name: view.name || view.api,
         api: view.api,
         components: view.components,
-        layouts: view.layouts,
+        layouts: view.layouts
       }
     } else {
       throw new ApiError(ApiErrorNames.ViewNotExist)
@@ -68,7 +68,7 @@ class ViewController {
 
   static async updateView(ctx) {
     let request = ctx.request.body
-    let view = await View.findOne({ api: request.api })
+    let view = await View.findById(request.id)
     if (view) {
       view.name = request.name || request.api
       view.api = request.api
